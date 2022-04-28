@@ -348,6 +348,6 @@ section.login a:hover {
   padding-left: 9px !important;
 }
 
-#order-now {
-  background-color: orange !important;
+a.link {
+  color: #FE5F1E;
 }
