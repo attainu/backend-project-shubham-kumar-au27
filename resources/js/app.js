@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Noty from 'noty';  //for cart notification
+import {initAdmin} from './admin';
 let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cartCounter')
 
@@ -27,4 +28,7 @@ addToCart.forEach((btn)=>{
         updateCart(pizza)
     })   
 });
+
+initAdmin()
+
 
