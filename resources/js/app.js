@@ -106,7 +106,7 @@ function initAdmin() {
                 </td>
             </tr>
         `
-        }).join('')
+        }).join()
     }
 }
 
