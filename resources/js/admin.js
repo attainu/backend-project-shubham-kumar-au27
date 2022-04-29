@@ -5,16 +5,28 @@ function initAdmin() {
     let orders = []
 
     let markup 
-
+//will get order table from admin order table
     axios.get('/admin/orders', {
-        Headers : {"X-Requested-With": "XMLHttpRequest"}.then(res =>{
-            orders = res.data
-            markup = generateMarkup(orders)
-            orderTableBody.innerHTML = markup
-        }).catch(err => {
-            console.log(err)
-        })
+        headers: {
+            "X-Requested-With": "XMLHttpRequest"
+        }
+    }).then(res => {
+        orders = res.data
+        markup = generateMarkup(orders)
+        orderTableBody.innerHTML = markup
+    }).catch(err => {
+        console.log(err)
     })
+
+    function renderItems(items) {
+        let parsedItems = Object.values(items)
+        return parsedItems.map((menuItem) => {
+            return `
+                <p>${ menuItem.item.name } - ${ menuItem.qty } pcs </p>
+            `
+        }).join('')
+      }
+
     function generateMarkup(orders) {
         return orders.map(order => {
             return `
@@ -68,5 +80,6 @@ function initAdmin() {
     }
 }
 
+
 //will be imported to app.js
-module.exports = initAdmin
+// module.exports = initAdmin
