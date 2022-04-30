@@ -2489,7 +2489,7 @@ addToCart.forEach(function (btn) {
     var pizza = JSON.parse(btn.dataset.pizza);
     updateCart(pizza);
   });
-});
+}); //for admin--side
 
 function initAdmin() {
   var orderTableBody = document.querySelector('#orderTableBody');

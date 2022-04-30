@@ -30,6 +30,9 @@ addToCart.forEach((btn)=>{
         updateCart(pizza)
     })   
 });
+
+
+//for admin--side
 function initAdmin() {
     const orderTableBody = document.querySelector('#orderTableBody')
     let orders = []

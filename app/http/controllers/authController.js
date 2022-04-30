@@ -10,6 +10,14 @@ function authController(){
             res.render('auth/login')
         },
         postLogin(req,res,next) {
+            const { email, password} = req.body
+
+            //request validation
+            if (!email || !password) {
+                req.flash('error','All fields are required')
+                return res.redirect('/login')
+            }
+
             passport.authenticate('local',(err,user,info)=>{
                 if(err){
                     req.flash('error',info.message)
