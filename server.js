@@ -7,12 +7,20 @@ const mongoose = require('mongoose') //db-connect
 const session = require('express-session') //session-based authentication
 const flash = require('express-flash');
 const passport = require('passport')
-const MongoStore = require('connect-mongo').default
+const MongoStore = require('connect-mongo')
 const PORT = process.env.PORT || 3300
 const app = express();
+
+//assets 
+app.use(express.static('public'))
+
+app.use(express.urlencoded({extended: false})) //for receiving the data from cust..
+
+app.use(express.json())
 //db-connection
 async function initMongoDB() {
-   await mongoose.connect(process.env.MONGO_URL, (err) =>{
+
+    await mongoose.connect(process.env.MONGO_URL, (err) =>{
        if (err) {
            console.log('error in connecting DB')
        } else{
@@ -40,12 +48,7 @@ app.use(passport.session())
 
 app.use(flash()) //middleware
 
-//assets 
-app.use(express.static('public'))
 
-app.use(express.urlencoded({extended: false})) //for receiving the data from cust..
-
-app.use(express.json())
 
 //global-Middleware--
 app.use((req,res,next)=>{
@@ -65,6 +68,11 @@ require('./routes/web')(app)
 app.listen(PORT, () =>{
     console.log( `listening on port ${PORT}`)
 });
+
+
+
+
+
 
 
 

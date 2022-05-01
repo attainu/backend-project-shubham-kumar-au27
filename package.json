@@ -2,10 +2,13 @@
   "name": "real-time-pizza",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "engines": {
+    "node": "v16.14.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node server.js",
+    "start":"nodemon server.js",
     "dev": "nodemon server.js",
     "serve": "node server.js",
     "developement": "mix",
