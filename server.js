@@ -7,9 +7,16 @@ const mongoose = require('mongoose') //db-connect
 const session = require('express-session') //session-based authentication
 const flash = require('express-flash');
 const passport = require('passport')
-const MongoStore = require('connect-mongo').default
+const MongoStore = require('connect-mongo')
 const PORT = process.env.PORT || 3300
 const app = express();
+
+//assets 
+app.use(express.static('public'))
+
+app.use(express.urlencoded({extended: false})) //for receiving the data from cust..
+
+app.use(express.json())
 //db-connection
 async function initMongoDB() {
    await mongoose.connect(process.env.MONGO_URL, (err) =>{
@@ -23,11 +30,12 @@ async function initMongoDB() {
 initMongoDB()
 
 
+
 //session-config--
 app.use(session({
-    secret: process.env.COOKIE_SECRET,
+    secret: "mySecretKey",
     resave: false,
-    store: MongoStore.create({mongoUrl: process.env.MONGO_URL,}),
+    store: MongoStore.create({mongoUrl: process.env.MONGO_URL}),
     saveUninitialized: false,
     cookie: {maxAge:1000*60*60*24} //i.e. 24hrs..
 }));
@@ -40,12 +48,6 @@ app.use(passport.session())
 
 app.use(flash()) //middleware
 
-//assets 
-app.use(express.static('public'))
-
-app.use(express.urlencoded({extended: false})) //for receiving the data from cust..
-
-app.use(express.json())
 
 //global-Middleware--
 app.use((req,res,next)=>{
@@ -63,6 +65,7 @@ app.listen(PORT, () =>{
 });
 //importing routes
 require('./routes/web')(app)
+
 
 
 
