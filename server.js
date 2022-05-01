@@ -7,7 +7,7 @@ const mongoose = require('mongoose') //db-connect
 const session = require('express-session') //session-based authentication
 const flash = require('express-flash');
 const passport = require('passport')
-const MongoStore = require('connect-mongo')
+const MongoStore = require('connect-mongo').default
 const PORT = process.env.PORT || 3300
 const app = express();
 //db-connection
@@ -27,9 +27,7 @@ initMongoDB()
 app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
-    store: MongoStore.create({
-        mongoUrl: process.env.MONGO_URL,
-      }),
+    store: MongoStore.create({mongoUrl: process.env.MONGO_URL,}),
     saveUninitialized: false,
     cookie: {maxAge:1000*60*60*24} //i.e. 24hrs..
 }));
