@@ -37,6 +37,7 @@ app.use(session({
     resave: false,
     store: MongoStore.create({mongoUrl: process.env.MONGO_URL,}),
     saveUninitialized: false,
+    auto_reconnect: true,
     cookie: {maxAge:1000*60*60*24} //i.e. 24hrs..
 }));
 
