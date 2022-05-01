@@ -19,7 +19,8 @@
                 <%orders.forEach((order)=>{ %>
                         <tr>
                             <td class="border px-4 py-3">
-                                <a class="link" href="/"><%= order._id%></a>
+                                <a class="link" href="/"><%=order._id%></a>
+                                
                             </td>
                             <td class="border px-4 py-3" >
                                 <%= order.phone%>
@@ -34,13 +35,13 @@
                             
                         </tr>
                    <% })%>
-                    
-                
                 <%} else {%>
                     <tr>
                         <td class="p-4"><span>No orders so far!</span></td>
                     </tr>
-                 <%}%>   
+                <%}%>
+            </tbody>       
+                
         </table>
     </div>
     

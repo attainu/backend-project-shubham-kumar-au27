@@ -60,11 +60,16 @@ app.use((req,res,next)=>{
 app.use(expressLayout)
 app.set('views',path.join(__dirname,'/resources/views'))
 app.set('view engine','ejs')
+
+//importing routes
+require('./routes/web')(app)
+
 app.listen(PORT, () =>{
     console.log( `listening on port ${PORT}`)
 });
-//importing routes
-require('./routes/web')(app)
+
+
+
 
 
 

@@ -5,6 +5,7 @@ import moment from 'moment';
 
 let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cartCounter')
+let deleteItem = document.querySelector('#deleteCartButton')
 
 function updateCart(pizza) {
     axios.post('/update-cart',pizza).then(res =>{
@@ -25,16 +26,15 @@ function updateCart(pizza) {
 }
 
 addToCart.forEach((btn)=>{
-    btn.addEventListener('click',(e)=>{
-        let pizza = JSON.parse(btn.dataset.pizza)
-        updateCart(pizza)
-    })   
+    btn.addEventListener('click', (e)=> {
+            let pizza = JSON.parse(btn.dataset.pizza);
+            updateCart(pizza);
+        })   
 });
 
-
 //for admin--side
-function initAdmin() {
-    const orderTableBody = document.querySelector('#orderTableBody')
+export  function initAdmin() {
+    const orderTableBody =  document.querySelector('#orderTableBody')
     let orders = []
 
     let markup 
@@ -51,8 +51,8 @@ function initAdmin() {
         console.log(err)
     })
 
-    function renderItems(items) {
-        let parsedItems = Object.values(items)
+     function renderItems(items) {
+        let parsedItems =  Object.values(items)
         return parsedItems.map((menuItem) => {
             return `
                 <p>${ menuItem.item.name } - ${ menuItem.qty } pcs </p>
@@ -60,11 +60,11 @@ function initAdmin() {
         }).join('')
       }
 
-    function generateMarkup(orders) {
-        return orders.map(order => {
+   function generateMarkup(orders) {
+        return  orders.map(order => {
             return `
                 <tr>
-                <td class="border px-4 py-2 text-green-900">
+                <td class=" border px-4 py-2 text-green-900">
                     <p>${ order._id }</p>
                     <div>${ renderItems(order.items) }</div>
                 </td>
@@ -112,5 +112,6 @@ function initAdmin() {
         }).join('')
     }
 }
+
 
 initAdmin()

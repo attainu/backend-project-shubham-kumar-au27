@@ -76,6 +76,28 @@ a.link {
     
 }
 
+section.status {
+    background-color: $secondary;
+    min-height: 80vh;
+}
+.status-box {
+    padding: 60px 0 0;
+}
+
+.status-box ul li span{
+    position: relative;
+}
+
+//dots
+.status-box ul li span:after {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top:0;
+    background: black;
+    width: 10px;
+}
+
 
 
 
