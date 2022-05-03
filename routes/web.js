@@ -22,11 +22,11 @@ function initRoutes(app) {
 
     app.post('/register', authController().postRegister)
     
-    app.post('/logout',authController().logout)
+    app.post('/logout',authController().logout) //will logout
 
-    app.get('/cart',cartController().index)
+    app.get('/cart',cartController().index)   //will return the card---
 
-    app.post('/update-cart',cartController().update)
+    app.post('/update-cart',cartController().update) //wi'' update the items in the cart--
 
     //Customer Routes
 
@@ -42,4 +42,6 @@ function initRoutes(app) {
 
 }
 module.exports = initRoutes
+
+
 

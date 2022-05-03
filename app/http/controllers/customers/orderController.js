@@ -7,10 +7,10 @@ function orderController () {
             //validate request
             const {phone,address} = req.body
             if(!phone || !address){
+                
                 req.flash('error','All fields are required')
                 return res.redirect('/cart')
             }
-
             const order = new Order({
                 customerId: req.user._id,
                 items: req.session.cart.items,
@@ -37,7 +37,7 @@ function orderController () {
             const order = await Order.findById(req.params.id)
             //user-authorize
             if (req.user._id.toString() === order.customerId.toString()) {
-                return res.render('customers/singleOrder',{ order })
+                return res.render('customers/singleOrder',{ order:order })
             }
             return res.redirect('/')
         }

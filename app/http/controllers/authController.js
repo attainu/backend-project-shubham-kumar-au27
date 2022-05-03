@@ -9,13 +9,13 @@ function authController(){
         login(req,res) {
             res.render('auth/login')
         },
-        postLogin(req,res,next) {
+        async postLogin(req,res,next) {
             const { email, password} = req.body
 
             //request validation
             if (!email || !password) {
                 req.flash('error','All fields are required')
-                return res.redirect('/login')
+                return await res.redirect('/login')
             }
 
             passport.authenticate('local',(err,user,info)=>{
@@ -48,7 +48,7 @@ function authController(){
         //request validation
         if (!name || !email || !password) {
             req.flash('error','All fields are required')
-            return res.redirect('/register')
+            return await res.redirect('/register')
 
         }
         // check if email exist
@@ -57,7 +57,7 @@ function authController(){
             if (result) {
                 req.flash('error', 'Email Already registered')
 
-                return res.redirect('/register')
+                return  res.redirect('/register')
             }
         })
 
@@ -93,6 +93,7 @@ function authController(){
 }
 
 module.exports = authController
+
 
 
 

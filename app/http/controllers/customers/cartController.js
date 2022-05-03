@@ -6,16 +6,7 @@ function cartController() {
             res.render('customers/cart')
         },
         update(req, res) {
-            // let cart = {
-            //     items: {
-            //         pizzaId: { item: pizzaObject, qty:0 },
-            //         pizzaId: { item: pizzaObject, qty:0 },
-            //         pizzaId: { item: pizzaObject, qty:0 },
-            //     },
-            //     totalQty: 0,
-            //     totalPrice: 0
-            // }
-            // for the first time creating cart and adding basic object structure
+         
             if (!req.session.cart) {
                 req.session.cart = {
                     items: {},
@@ -39,8 +30,16 @@ function cartController() {
                 cart.totalPrice =  cart.totalPrice + req.body.price
             }
             return res.json({ totalQty: req.session.cart.totalQty })
+        },
+        delete(req,res){
+            let cart = req.session.cart.items
+
+            //check if id is equal or not
+            if(cart.item[req.body._id] === data_pizza_id){
+                cart.item[req.body._id].qty = 0
+            }
+            
         }
     }
 }
-
 module.exports = cartController

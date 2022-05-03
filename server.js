@@ -3,7 +3,7 @@ const ejs = require('ejs');
 const expressLayout = require('express-ejs-layouts');
 const path = require('path');  //node module
 require('dotenv').config();
-const mongoose = require('mongoose') //db-connect
+const {mongoose} = require('mongoose') //db-connect
 const session = require('express-session') //session-based authentication
 const flash = require('express-flash');
 const passport = require('passport')
@@ -30,12 +30,14 @@ async function initMongoDB() {
 }
 initMongoDB()
 
-
 //session-config--
 app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
-    store: MongoStore.create({mongoUrl: process.env.MONGO_URL,}),
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URL}),
+    
+    
     saveUninitialized: false,
     auto_reconnect: true,
     cookie: {maxAge:1000*60*60*24} //i.e. 24hrs..
@@ -69,6 +71,9 @@ require('./routes/web')(app)
 app.listen(PORT, () =>{
     console.log( `listening on port ${PORT}`)
 });
+
+
+
 
 
 
