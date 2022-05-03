@@ -6,4 +6,3 @@ function admin(req,res,next) {
     return res.redirect('/')
 }
 module.exports = admin
-

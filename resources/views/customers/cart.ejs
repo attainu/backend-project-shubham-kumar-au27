@@ -13,7 +13,7 @@
                     <h1><%=pizza.item.name %></h1>
                     <span><%=pizza.item.size %></span>
                 </div>
-                <span class="flex-1"><%= pizza.qty%></span>s
+                <span class="flex-1"><%= pizza.qty%></span>
                 <span class="font-bold text-lg">Rs.<%= pizza.item.price * pizza.qty %></span>
             </div> <button class="ml-12" id="deleteCartButton" data-pizza-id="<%= pizza.item._id%>" >Delete</button>
             <% } %>
@@ -33,7 +33,7 @@
                         <input name="address"
                         class="border border-gray-400 p-2 w-1/2" type="text" placeholder="Address">
                         <div>
-                            <button id="order-now" class="btn-primary px-6 py-2 rounded-full text-white font-bold mt-6" type="submit" onclick="alert('Order-Placed-Successfully')">Order-Now</button>
+                            <button id="order-now" class="btn-primary px-6 py-2 rounded-full text-white font-bold mt-6" type="submit">Order-Now</button>
                         </div>
                     </form>
                 </div>
