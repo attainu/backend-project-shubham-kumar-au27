@@ -2485,7 +2485,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var addToCart = document.querySelectorAll('.add-to-cart');
 var cartCounter = document.querySelector('#cartCounter');
-var deleteItem = document.querySelector('#deleteCartButton');
+var increase = document.querySelectorAll('.increase');
+var decrease = document.querySelectorAll('.decrease');
 
 function updateCart(pizza) {
   axios__WEBPACK_IMPORTED_MODULE_0___default().post('/update-cart', pizza).then(function (res) {
@@ -2513,7 +2514,30 @@ addToCart.forEach(function (btn) {
   });
 });
 
-function deletePizza(pizza) {} //for admin--side
+function addPizza(pizza) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post('/add-pizza', pizza).then(function (res) {
+    cartCounter.innerText = res.data.totalQty;
+  });
+}
+
+function removePizza(pizza) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post('/remove-pizza', pizza).then(function (res) {
+    cartCounter.innerText = res.data.totalQty;
+  });
+}
+
+increase.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    var pizza = JSON.parse(btn.dataset.pizza);
+    addPizza(pizza);
+  });
+});
+decrease.forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    var pizza = JSON.parse(btn.dataset.pizza);
+    removePizza(pizza);
+  });
+}); //for admin--side
 // export  function initAdmin() {
 //     const orderTableBody =  document.querySelector('#orderTableBody')
 //     let orders = []

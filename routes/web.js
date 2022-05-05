@@ -27,6 +27,11 @@ function initRoutes(app) {
     app.get('/cart',cartController().index)   //will return the card---
 
     app.post('/update-cart',cartController().update) //wi'' update the items in the cart--
+    //for adding
+    app.post('/add-pizza',cartController().add)
+    //for removing
+    app.post('/remove-pizza',cartController().remove)
+    
 
     //Customer Routes
 
