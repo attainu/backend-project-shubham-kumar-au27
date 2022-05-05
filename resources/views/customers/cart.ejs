@@ -15,7 +15,8 @@
                 </div>
                 <span class="flex-1"><%= pizza.qty%></span>
                 <span class="font-bold text-lg">Rs.<%= pizza.item.price * pizza.qty %></span>
-            </div> <button class="ml-12" id="deleteCartButton" data-pizza-id="<%= pizza.item._id%>" >Delete</button>
+            </div><button class="increase ml-12" data-pizza-id="<%= pizza.item._id%>">add</button>
+            <button class="decrease ml-12" data-pizza-id="<%= pizza.item._id%>">Remove</button>
             <% } %>
         </div>
     

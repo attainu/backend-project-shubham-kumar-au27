@@ -1,4 +1,5 @@
 const express = require('express');
+const serverless = require('serverless-http');
 const ejs = require('ejs');
 const expressLayout = require('express-ejs-layouts');
 const path = require('path');  //node module
@@ -67,6 +68,7 @@ app.set('view engine','ejs')
 
 //importing routes
 require('./routes/web')(app)
+//---------------------------//
 
 app.listen(PORT, () =>{
     console.log( `listening on port ${PORT}`)
@@ -75,7 +77,8 @@ app.listen(PORT, () =>{
 
 
 
-
+module.exports = app;
+module.exports.handler = serverless(app)
 
 
 

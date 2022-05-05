@@ -5,7 +5,8 @@ import moment from 'moment';
 
 let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cartCounter')
-let deleteItem = document.querySelector('#deleteCartButton')
+let increase = document.querySelectorAll('.increase')
+let decrease = document.querySelectorAll('.decrease')
 
 function updateCart(pizza) {
     axios.post('/update-cart',pizza).then(res =>{
@@ -31,9 +32,29 @@ addToCart.forEach((btn)=>{
             updateCart(pizza);
         })   
 });
-function deletePizza(pizza){
-    
+function addPizza(pizza){
+    axios.post('/add-pizza',pizza).then(res =>{
+        cartCounter.innerText = res.data.totalQty
+})
 }
+function removePizza(pizza){
+    axios.post('/remove-pizza',pizza).then(res =>{
+        cartCounter.innerText = res.data.totalQty
+})
+}
+increase.forEach((btn)=> {
+    btn.addEventListener('click',(e)=>{
+        let pizza = JSON.parse(btn.dataset.pizza);
+        addPizza(pizza)
+    })
+})
+
+decrease.forEach((btn)=> {
+    btn.addEventListener('click',(e)=>{
+        let pizza = JSON.parse(btn.dataset.pizza);
+        removePizza(pizza)
+    })
+})
 
 
 
